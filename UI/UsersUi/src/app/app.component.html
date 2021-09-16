@@ -1,0 +1,65 @@
+<div id="ErrorBar">
+  <div>
+    <p *ngFor="let error of ErrorMessage" id="ErrorMessage"><strong>*{{error}}</strong></p>
+  </div>
+</div>
+<div class={{showSuccess}} id="SuccessBar">
+  <div>
+    <p>{{Success}} <span (click)="removeSuccess()">X</span></p>
+  </div>
+</div>
+<div class="page-container">
+  <div class="user-search-bar">
+    <div class="container">
+
+      <input class=" " [(ngModel)]="searchBox" (keyup)="onSearch(searchBox)" placeholder="Search for a user"
+        title="text" />
+      <button (click)="onSearch(searchBox)" class="user-btn">
+        Go!
+      </button>
+    </div>
+    <div class="user-search-result">
+      <div class="users-result container">
+        <div class="users-list" *ngFor="let user of users" (click)="onSelect(user)">
+          <div class="user-result-cont"><span class=" badge">{{user.name}} {{user.surname}}</span></div>
+        </div>
+
+      </div>
+      <div class="container" id="SelectedUserContainer">
+        <div>
+          <div *ngFor="let user of selectedUsers">
+            <h4>{{user.name}} {{user.surname}}</h4>
+            <p>{{user.job}}</p>
+            <p>{{user.mobile}}</p>
+            <p>{{user.email}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class={{ShowAddUser}} id="NewUser">
+      <div class="name-container">
+        <input required placeholder="Name" [(ngModel)]="newUserName" />
+      </div>
+      <div class="name-container">
+        <input required placeholder="Surname" [(ngModel)]="newSurName" />
+      </div>
+      <div class="extra-details-container">
+        <input required placeholder="Job Title" [(ngModel)]="newJobName" />
+      </div>
+      <div class="extra-details-container">
+        <input required placeholder="Mobile" [(ngModel)]="newMobile" />
+      </div>
+      <div class="extra-details-container">
+        <input required placeholder="Email" [(ngModel)]="newEmail" />
+      </div>
+      <button (click)="onSubmitNewUser(newUserName, newSurName, newJobName, newMobile, newEmail)"
+        class="btn-default create-btn">Create</button>
+    </div>
+    <div class="container" id="NewUserButton">
+      <button class="btn-default" (click)="ShowAddUserBox()">New User +</button>
+    </div>
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>
